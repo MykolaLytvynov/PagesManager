@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Image ' + ${image.id}">Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+<h3 th:text="'Image name: ' + ${image.name}"/>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/images">Images</a></li>
+        <li class="breadcrumb-item active" aria-current="page" th:text="'Image by id: ' + ${image.id}"></li>
+    </ol>
+</nav>
+
+<td><img th:src="@{'data:image/jpeg;base64,'+${image.base64Image}}"/></td>
+</body>
+</html>

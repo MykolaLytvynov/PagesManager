@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Images</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+<h3>List of Images</h3>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Images</li>
+    </ol>
+</nav>
+
+<div class="btn-group"><a href="/images/add" type="button"
+                          class="btn btn-primary btn-sm">Add Image</a></div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Image name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Category</th>
+            <th scope="col">Link</th>
+        </tr>
+    </thead>
+    <tr th:if="${images.isEmpty()}">
+        <td colspan="5">No images</td>
+    </tr>
+    <tr th:each="image : ${images}">
+        <td><img th:src="@{'data:image/jpeg;base64,'+${image.base64Image}}" width="400"/></td>
+        <td th:text="${image.name}"></td>
+        <td th:text="${#dates.format(image.date, 'dd-MM-yyyy HH:mm')}"></td>
+        <td th:text="${image.category.name}"></td>
+        <td><a th:href="@{/images/{id}(id = ${image.id})}">Open image</a></td>
+    </tr>
+<table>
+
+</body>
+</html>
